@@ -3,10 +3,12 @@ package com.automation;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.Properties;
+import java.util.Random;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
@@ -15,6 +17,7 @@ public class Common {
 
 	public static String value;
 	public static WebDriver driver;
+	public static WebElement element;
 	
 	public static String read(String key)
 	{
@@ -45,59 +48,48 @@ public class Common {
 		driver.get(Common.read("OpenUrl"));
 	}
 	
-	public static void click(String value,String type)
+	
+	public static WebElement findElement(String value,String type)
 	{
+
 		if(type.equalsIgnoreCase("xpath"))
 		{
-			driver.findElement(By.xpath(value)).click();
+			element = driver.findElement(By.xpath(value));
 		}
 		else if(type.equalsIgnoreCase("id"))
 		{
-			driver.findElement(By.id(value)).click();
+			element = driver.findElement(By.id(value));
 		}
 		else if(type.equalsIgnoreCase("name"))
 		{
-			driver.findElement(By.name(value)).click();
+			element = driver.findElement(By.name(value));
 		}
 		
+		return element;
+	}
+
+	public static void click(String value,String type)
+	{
+		findElement(value, type).click();
 	}
 	
 	public static void sendkeys(String selectorvalue,String type,String value)
 	{
-		if(type.equalsIgnoreCase("xpath"))
-		{
-			driver.findElement(By.xpath(selectorvalue)).sendKeys(value);;
-		}
-		else if(type.equalsIgnoreCase("id"))
-		{
-			driver.findElement(By.id(selectorvalue)).sendKeys(value);
-		}
+		findElement(selectorvalue,type).sendKeys(value);;
 	}
 	
-	public static String getText(String xpath)
+	public static String getText(String value,String type)
 	{
 
-		String val=driver.findElement(By.xpath(xpath)).getText();
+		String val=findElement(value,type).getText();
 		return val;
 	}
 	
 	public static void clear(String value,String type)
 	{
-
-		if(type.equalsIgnoreCase("xpath"))
-		{
-			driver.findElement(By.xpath(value)).clear();
-		}
-		else if(type.equalsIgnoreCase("id"))
-		{
-			driver.findElement(By.id(value)).clear();
-		}
-		else if(type.equalsIgnoreCase("name"))
-		{
-			driver.findElement(By.name(value)).clear();
-		}
-		
+		findElement(value, type).clear();
 	}
+	
 	
 	public static void wait(int seconds)
 	{
@@ -109,11 +101,11 @@ public class Common {
 	}
 	
 	
-	public static boolean isElementPresent(String xpath)
+	public static boolean isElementPresent(String value,String type)
 	{
 		try
 		{
-			driver.findElement(By.xpath(xpath));
+			findElement(value,type);
 			return true;
 		}
 		catch(Exception e)
@@ -124,8 +116,23 @@ public class Common {
 	}
 	
 	public static void ScrollWindow()
-	{
-		 JavascriptExecutor js = (JavascriptExecutor) driver;
+	{	
+		JavascriptExecutor js = (JavascriptExecutor) driver;
 		    js.executeScript("window.scrollBy(0,1000)");
+	}
+	
+	public static void quit()
+	{
+		driver.close();
+		driver.quit();
+	}
+	
+	public static String RandomGenerator()
+	{
+		String email;
+		Random randomGenerator = new Random();  
+		int randomInt = randomGenerator.nextInt(1000);  
+		email="username"+ randomInt +"@gmail.com";
+		return email;
 	}
 }

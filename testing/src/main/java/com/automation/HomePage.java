@@ -8,7 +8,7 @@ public class HomePage extends Common{
 	{
 		Common.LoadDriver();
 		Common.getUrl();
-		if(Common.isElementPresent(Common.read("logo")))
+		if(Common.isElementPresent(Common.read("logo"),"xpath"))
 		{
 			Reporter.log("Logo is present");
 		}

@@ -15,6 +15,14 @@ public class StartTest {
   public void CreateAnAccoutUsingNegativeValues() {
 	  HomePage.LoadDriver();
 	  Login.CreateAnAccount("invalid");
+	  Common.quit();
+  }
+  
+  @Test(priority = 2)
+  public void CreateAnAccoutUsingPositiveValues() {
+	  HomePage.LoadDriver();
+	  Login.CreateAnAccount("valid");
+	  Common.quit();
   }
 
 
