@@ -45,9 +45,58 @@ public class Common {
 		driver.get(Common.read("OpenUrl"));
 	}
 	
-	public static void click(String xpath)
+	public static void click(String value,String type)
 	{
-		driver.findElement(By.xpath(xpath)).click();
+		if(type.equalsIgnoreCase("xpath"))
+		{
+			driver.findElement(By.xpath(value)).click();
+		}
+		else if(type.equalsIgnoreCase("id"))
+		{
+			driver.findElement(By.id(value)).click();
+		}
+		else if(type.equalsIgnoreCase("name"))
+		{
+			driver.findElement(By.name(value)).click();
+		}
+		
+	}
+	
+	public static void sendkeys(String selectorvalue,String type,String value)
+	{
+		if(type.equalsIgnoreCase("xpath"))
+		{
+			driver.findElement(By.xpath(selectorvalue)).sendKeys(value);;
+		}
+		else if(type.equalsIgnoreCase("id"))
+		{
+			driver.findElement(By.id(selectorvalue)).sendKeys(value);
+		}
+	}
+	
+	public static String getText(String xpath)
+	{
+
+		String val=driver.findElement(By.xpath(xpath)).getText();
+		return val;
+	}
+	
+	public static void clear(String value,String type)
+	{
+
+		if(type.equalsIgnoreCase("xpath"))
+		{
+			driver.findElement(By.xpath(value)).clear();
+		}
+		else if(type.equalsIgnoreCase("id"))
+		{
+			driver.findElement(By.id(value)).clear();
+		}
+		else if(type.equalsIgnoreCase("name"))
+		{
+			driver.findElement(By.name(value)).clear();
+		}
+		
 	}
 	
 	public static void wait(int seconds)
