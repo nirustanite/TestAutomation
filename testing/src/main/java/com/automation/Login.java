@@ -5,11 +5,28 @@ import org.testng.Reporter;
 public class Login {
 	
 	public static String text;
-	public static void CreateAnAccount(String typeofemail)
+	
+	public static void CreateAnAccountBefore(String typeofemail)
 	{
 		if(Common.isElementPresent(Common.read("sigin"),"xpath"))
 		{
 			Common.click(Common.read("sigin"),"xpath");
+			CreateAnAccount(typeofemail);
+		}
+		else
+		{
+			Reporter.log("SignIn not present");
+		}
+		
+	}
+	
+	public static void CreateAnAccountAFter(String typeofemail)
+	{
+		CreateAnAccount(typeofemail);
+	}
+	
+	public static void CreateAnAccount(String typeofemail)
+	{
 			if(Common.isElementPresent(Common.read("createAnAccount"),"xpath"))
 			{
 				Reporter.log("Create an Account is present");
@@ -66,6 +83,7 @@ public class Login {
 						Common.sendkeys(Common.read("mobilephone"), "id", Common.read("mobilephone_1"));
 						Common.sendkeys(Common.read("adressalias"), "id", Common.read("addressalias_1"));
 						Common.click(Common.read("registerbutton"), "name");
+						Common.wait(2);
 						if(Common.isElementPresent(Common.read("createdaccount"), "xpath"))
 						{
 							Reporter.log("Account created successfully");
@@ -82,12 +100,30 @@ public class Login {
 			{
 				Reporter.log("Create an Account is not present");
 			}
+	}
+	
+	public static void SignInBefore()
+	{
+		Common.click(Common.read("sigin"),"xpath");
+		SignIn();
+	}
+	public static void SignInAfter()
+	{
+		SignIn();
+	}
+	
+	public static void SignIn()
+	{
+		if(Common.isElementPresent(Common.read("SignInDirect"), "xpath"))
+		{
+			Common.sendkeys(Common.read("email"), "id", Common.read("valid_email"));
+			Common.sendkeys(Common.read("password"), "id", Common.read("valid_password"));
+			Common.click(Common.read("loginbutton"), "id");
+			Common.wait(2);
 		}
 		else
 		{
-			Reporter.log("SignIn not present");
+			Reporter.log("SignIn is not present");
 		}
 	}
-	
-	
 }

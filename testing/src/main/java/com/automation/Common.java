@@ -11,6 +11,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 
 
 public class Common {
@@ -134,5 +135,12 @@ public class Common {
 		int randomInt = randomGenerator.nextInt(1000);  
 		email="username"+ randomInt +"@gmail.com";
 		return email;
+	}
+	
+	public static void mouseover(String value,String type)
+	{
+		WebElement wb = findElement(value, type);
+		Actions builder = new Actions(driver);
+		builder.moveToElement(wb).build().perform();
 	}
 }
