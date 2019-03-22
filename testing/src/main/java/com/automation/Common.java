@@ -7,11 +7,16 @@ import java.util.Random;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
+
+import com.automation.utils.ExtentReports.ExtentTestManager;
+import com.relevantcodes.extentreports.LogStatus;
 
 
 public class Common {
@@ -143,4 +148,24 @@ public class Common {
 		Actions builder = new Actions(driver);
 		builder.moveToElement(wb).build().perform();
 	}
+	
+	public static void TakeScreenshot(String result)
+	{
+		 String base64Screenshot = "data:image/png;base64,"+((TakesScreenshot)driver).
+	                getScreenshotAs(OutputType.BASE64);
+		 
+		 if(result.equalsIgnoreCase("pass"))
+		 {
+			 ExtentTestManager.getTest().log(LogStatus.PASS,"Step passed",
+		                ExtentTestManager.getTest().addBase64ScreenShot(base64Screenshot));
+		 }
+		 else
+		 {
+			 ExtentTestManager.getTest().log(LogStatus.PASS,"Step passed",
+		                ExtentTestManager.getTest().addBase64ScreenShot(base64Screenshot));
+		 }
+	       
+	}
+	
+
 }

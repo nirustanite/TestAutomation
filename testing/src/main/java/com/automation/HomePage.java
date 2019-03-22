@@ -14,10 +14,13 @@ public class HomePage extends Common{
 		if(Common.isElementPresent(Common.read("logo"),"xpath"))
 		{
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Logo is present");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "The Url is loaded");
 		}
 		else
 		{
-			Reporter.log("Logo is not present");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Logo is not present");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "The Url is not loaded");
+			Common.TakeScreenshot("fail");
 		}
 	}
 	
