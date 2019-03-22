@@ -10,21 +10,22 @@ public class StartTest {
   public void beforeClass() {
   }
   
-  
-  @Test(priority = 1)
-  public void CreateAnAccoutUsingNegativeValues() {
-	  HomePage.LoadDriver();
-	  Login.CreateAnAccountBefore("invalid");
+  @Test(priority = 1) 
+  public void CreateAnAccoutUsingNegativeValues() 
+  {
+	  HomePage.LoadDriver(); 
+	  Login.CreateAnAccountBefore("invalid"); 
 	  Common.quit();
   }
-  
-  @Test(priority = 2)
-  public void CreateAnAccoutUsingPositiveValues() {
-	  HomePage.LoadDriver();
-	  Login.CreateAnAccountBefore("valid");
-	  Common.quit();
+	  
+  @Test(priority = 2) 
+  public void CreateAnAccoutUsingPositiveValues()
+  {
+	  HomePage.LoadDriver(); 
+	  Login.CreateAnAccountBefore("valid"); 
+	  Common.quit(); 
   }
-
+   
   @Test(priority = 3)
   public void SignInAndCheckout()
   {

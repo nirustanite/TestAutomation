@@ -8,7 +8,8 @@ public class Checkout extends Common{
 	{
 		if(Common.isElementPresent(Common.read("carttitle"), "xpath"));
 		{
-			Common.click(Common.read("ProceedToCheckout"), "xpath");
+			Common.ScrollWindow();
+			Common.click(Common.read("ProceedToCheckoutCart"), "xpath");
 			Checkout();
 		}
 	}
@@ -17,7 +18,8 @@ public class Checkout extends Common{
 	{
 		if(Common.isElementPresent(Common.read("carttitle"), "xpath"));
 		{
-			Common.click(Common.read("ProceedToCheckout"), "xpath");
+			Common.ScrollWindow();
+			Common.click(Common.read("ProceedToCheckoutCart"), "xpath");
 			if(value.equalsIgnoreCase("CreateAnAccount"))
 			{
 				Login.CreateAnAccountAFter("valid");
@@ -42,7 +44,8 @@ public class Checkout extends Common{
 				Common.click(Common.read("paymenttype"), "xpath");
 				if(Common.isElementPresent(Common.read("heading"), "xpath"))
 				{
-					Common.click("confirmorder", "xpath");
+					
+					Common.click(Common.read("confirmorder"), "xpath");
 					if(Common.getText(Common.read("heading"),"xpath").equalsIgnoreCase("Order confirmation"))
 					{
 						Reporter.log("Order is confirmed");
