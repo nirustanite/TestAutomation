@@ -11,12 +11,13 @@
 **ASSUMPTIONS**
 1. Script is written for testing in Chrome only.
 
+---
 
 **PREREQUISTES**
 1. Maven should be installed.
 2. Runtime Environment should be JDK.
 3. Install chrome driver and place the path in resources/config.properties
-   Example Path: \\Path to exe\\chromedriver.exe
+   Example Path: \\\Path to exe\\\chromedriver.exe
 
 ---
 
