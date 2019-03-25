@@ -18,12 +18,16 @@ import org.openqa.selenium.interactions.Actions;
 import com.automation.utils.ExtentReports.ExtentTestManager;
 import com.relevantcodes.extentreports.LogStatus;
 
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 
 public class Common {
 
 	public static String value;
 	public static WebDriver driver;
 	public static WebElement element;
+    public static int count;
 	
 	public static String read(String key)
 	{
@@ -138,7 +142,7 @@ public class Common {
 		String email;
 		Random randomGenerator = new Random();  
 		int randomInt = randomGenerator.nextInt(1000);  
-		email="username"+ randomInt +"@gmail.com";
+		email="testusername"+ randomInt +"@gmail.com";
 		return email;
 	}
 	
@@ -166,6 +170,27 @@ public class Common {
 		 }
 	       
 	}
+	
+	public static void Explicitwait(String value,String type)
+	{
+		WebDriverWait wait = new WebDriverWait(driver,120);
+		WebElement wb;
+		if(type.equalsIgnoreCase("xpath"))
+		{
+			wb = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(value)));
+		}
+		else if(type.equalsIgnoreCase("id"))
+		{
+			wb = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(value)));
+		}
+		else if(type.equalsIgnoreCase("name"))
+		{
+			wb = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name(value)));
+		}
+		 
+	}
+	
+
 	
 
 }

@@ -26,14 +26,13 @@ public class StartTest {
 	  Common.quit(); 
   }
    
-  @Test(priority = 3)
+ @Test(priority = 3)
   public void SignInAndCheckout()
   {
 	  HomePage.LoadDriver();
 	  Login.SignInBefore();
 	  ProductPage.SearchProduct();
 	  Checkout.CheckoutafterLogin();
-	  OrderHistory.CheckOrderHistory();
 	  Common.quit();
   }
   
@@ -43,7 +42,6 @@ public class StartTest {
 	  HomePage.LoadDriver();
 	  ProductPage.SearchProduct();
 	  Checkout.CheckoutbeforeLogin("SignIn");
-	  OrderHistory.CheckOrderHistory();
 	  Common.quit();
   }
   
@@ -53,7 +51,6 @@ public class StartTest {
 	  HomePage.LoadDriver();
 	  ProductPage.SearchProduct();
 	  Checkout.CheckoutbeforeLogin("CreateAnAccount");
-	  OrderHistory.CheckOrderHistory();
 	  Common.quit();
   }
 
